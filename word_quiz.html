@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест на знание слов</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .question { margin-bottom: 10px; }
+        .correct { color: green; font-weight: bold; }
+        .incorrect { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Тест на знание японских и русских слов</h2>
+    <form id="quizForm">
+        
+        <!-- 30 вопросов -->
+        
+        <script>
+            const questions = [
+                ["フォーク", "Вилка", "Ложка", "Нож"],
+                ["はさみ", "Ножницы", "Клей", "Ластик"],
+                ["ファクス", "Факс", "Компьютер", "Телефон"],
+                ["ワープロ", "Текстовый процессор", "Принтер", "Монитор"],
+                ["パソコン", "Персональный компьютер", "Факс", "Калькулятор"],
+                ["パンチ", "Дырокол", "Степлер", "Клей"],
+                ["ホッチキス", "Степлер", "Дырокол", "Ножницы"],
+                ["セロテープ", "Скотч", "Бумага", "Нож"],
+                ["けしゴム", "Ластик", "Бумага", "Клей"],
+                ["かみ", "Бумага", "Ластик", "Ручка"],
+                ["きります", "Резать", "Писать", "Рисовать"],
+                ["おくります", "Посылать", "Забирать", "Купить"],
+                ["あげます", "Давать", "Брать", "Делать"],
+                ["もらいます", "Получать", "Давать", "Отправлять"],
+                ["かします", "Давать в долг", "Брать в долг", "Отправлять"],
+                ["かります", "Брать в долг", "Давать в долг", "Покупать"],
+                ["おしえます", "Преподавать", "Изучать", "Читать"],
+                ["ならいます", "Изучать", "Преподавать", "Объяснять"],
+                ["かけます", "Звонить", "Писать", "Читать"],
+                ["て", "Рука", "Нога", "Голова"],
+                ["はし", "Палочки для еды", "Вилка", "Ложка"],
+                ["スプーン", "Ложка", "Нож", "Палочки для еды"],
+                ["ナイフ", "Нож", "Ложка", "Вилка"],
+                ["はな", "Цветок", "Дерево", "Трава"],
+                ["シャツ", "Рубашка", "Штаны", "Куртка"],
+                ["プレゼント", "Подарок", "Цветок", "Деньги"],
+                ["にもつ", "Багаж", "Деньги", "Билет"],
+                ["おかね", "Деньги", "Посылка", "Багаж"],
+                ["きっぷ", "Билет", "Документ", "Посылка"],
+                ["クリスマス", "Рождество", "Новый год", "Пасха"]
+            ];
+            
+            let quizHTML = "";
+            questions.forEach((q, i) => {
+                quizHTML += `<div class='question'>
+                    <p>${i + 1}. Как переводится слово "${q[0]}"?</p>
+                    <label><input type='radio' name='q${i + 1}' value='1'> ${q[1]}</label>
+                    <label><input type='radio' name='q${i + 1}' value='2'> ${q[2]}</label>
+                    <label><input type='radio' name='q${i + 1}' value='3'> ${q[3]}</label>
+                </div>`;
+            });
+            document.write(`<form id='quizForm'>${quizHTML}<button type='button' onclick='checkAnswers()'>Проверить</button></form><p id='result'></p>`);
+            
+            function checkAnswers() {
+                let score = 0;
+                questions.forEach((q, i) => {
+                    const selected = document.querySelector(`input[name='q${i + 1}']:checked`);
+                    if (selected && selected.value === "1") {
+                        selected.parentElement.classList.add("correct");
+                        score++;
+                    } else if (selected) {
+                        selected.parentElement.classList.add("incorrect");
+                    }
+                });
+                document.getElementById("result").innerText = `Вы набрали ${score} из 30 баллов.`;
+            }
+        </script>
+    </form>
+</body>
+</html>
